@@ -35,3 +35,19 @@ function createXmlHttpRequestObject()
     }
   }
 }
+
+function process()
+{
+  if(xmlHttp.readyState==0 || xmlHttp.readyState==4)
+  {
+    username=encodeURIComponent(document.getElementByID("username").value);
+    username=encodeURIComponent(document.getElementByID("password").value);
+    xmlHttp.open("GET","login.php?username="+username,true); 
+    xml.onreadystatechange=handleServerResponse;
+    xmlHttp.send(null);
+  }
+  else
+  {
+    setTimeout('process()',1000);
+  }
+}
